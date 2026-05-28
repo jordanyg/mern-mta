@@ -5,7 +5,7 @@ const orgSchema = mongoose.Schema({
     user  :{
         type  : mongoose.Schema.Types.ObjectId,
         required : true,
-        ref : User
+        ref : 'User'
     },
     name:{
         type:String,
@@ -17,7 +17,7 @@ const orgSchema = mongoose.Schema({
     }
 
 },{
-    timeStamp : true
+    timestamps : true
 })
 
 const Org = mongoose.model('Org' , orgSchema)

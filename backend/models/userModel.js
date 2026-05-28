@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
-import { timeStamp } from "node:console";
-import { type } from "node:os";
+
 
 const userSchema = mongoose.Schema({
     name : {
@@ -15,7 +14,7 @@ const userSchema = mongoose.Schema({
         type : String , 
         required : true
     }
-}, {timeStamp : true})
+}, {timestamps : true})
 
 const User = mongoose.model('User' , userSchema)
 
