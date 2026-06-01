@@ -2,6 +2,7 @@ import Org from "../models/orgModel.js";
 import asyncHandler from "express-async-handler";
 import bcrypt from "bcryptjs";
 import Membership from "../models/memvershipModel.js";
+import { asyncWrapProviders } from "node:async_hooks";
 
 const createOrg = asyncHandler(async (req, res) => {
     const { name, secret } = req.body;
@@ -90,5 +91,22 @@ const joinOrg = asyncHandler(async (req, res) => {
         message: `successfully joined ${organization.name}`,
     });
 });
+const getOrgMembers = asyncHandler(async(req,res)=>{
+    const membership = await Membership.findOne({
+        user : req.user._id,
+        organization : req.params.id
+        })
 
-export { createOrg, getOrgs, joinOrg };
+    if(!membership){
+        res.status(401)
+        throw new Error('not a member of this organization')
+    }
+    const members = await Membership.find({
+        organization : req.params.orgId
+    }).populate('user','name email')
+    res.status(200).json(members)
+})
+
+
+
+export { createOrg, getOrgs, joinOrg,getOrgMembers };
