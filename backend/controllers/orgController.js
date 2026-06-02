@@ -42,7 +42,7 @@ const createOrg = asyncHandler(async (req, res) => {
 const getOrgs = asyncHandler(async (req, res) => {
     const organizations = await Membership.find({
         user: req.user.id,
-    }).populate("organization");
+    }).populate("organization" , "-secret");
 
     res.status(200).json(organizations);
 });
@@ -92,9 +92,10 @@ const joinOrg = asyncHandler(async (req, res) => {
     });
 });
 const getOrgMembers = asyncHandler(async(req,res)=>{
+
     const membership = await Membership.findOne({
         user : req.user._id,
-        organization : req.params.id
+        organization : req.params.orgId
         })
 
     if(!membership){
