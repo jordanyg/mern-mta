@@ -28,7 +28,7 @@ const RegisterPage = () => {
         {/* Heading */}
         <div className="mb-8 text-center">
           <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-[#f8f6f2] px-4 py-2 text-sm font-medium text-gray-600">
-             Start Fresh
+            🌱 Start Fresh
           </div>
 
           <h1 className="mb-3 text-4xl font-bold tracking-tight text-gray-900">
