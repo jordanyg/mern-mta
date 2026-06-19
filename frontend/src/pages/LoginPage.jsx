@@ -1,12 +1,32 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useLoginMutation } from '../slices/usersApiSlice'
+import { useSelector , useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+
 
 const LoginPage = () => {
 
     const [email , setEmail] = useState('')
     const [password , setPassword] = useState('')
 
+
+
+
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+
+
+    const [login] = useLoginMutation()
+
+    const {userInfo} = useSelector((state)=>state.auth)
+
+    useEffect(()=>{
+      if(userInfo){
+        navigate('/')
+      }
+    },[userInfo , navigate])
 
     const submitHandler =(e)=>{
         e.preventDefault()
