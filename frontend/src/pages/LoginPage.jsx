@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom'
 import { useLoginMutation } from '../slices/usersApiSlice'
 import { useSelector , useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
+import { setCredentials } from '../slices/authSlice'
 
 
 const LoginPage = () => {
@@ -28,9 +30,17 @@ const LoginPage = () => {
       }
     },[userInfo , navigate])
 
-    const submitHandler =(e)=>{
+    const submitHandler =async (e)=>{
         e.preventDefault()
-        console.log('submit')
+        try {
+          const res = await login({email ,password}).unwrap()
+          
+          dispatch(setCredentials(res))
+          
+          navigate('/')
+        } catch (err) {
+         toast.error(err?.data?.message || err.error) 
+        }
     }
   return (
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#f8f6f2] px-6 py-12">
