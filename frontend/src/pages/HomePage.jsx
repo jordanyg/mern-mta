@@ -1,11 +1,14 @@
 import React from 'react'
 import Hero from '../components/Hero'
+import LoggedInUserDisplay from '../components/LoggedInUserDisplay'
+import { useSelector } from 'react-redux'
 
 const HomePage = () => {
-  return (
-    <div>
-      <Hero />
-    </div>
+
+  const {userInfo} = useSelector((state)=>state.auth)
+
+  return (userInfo ? (<LoggedInUserDisplay />) : (<Hero />)
+    
   )
 }
 
