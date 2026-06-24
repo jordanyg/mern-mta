@@ -38,7 +38,7 @@ const Header = () => {
             to="/"
             className="text-2xl font-semibold tracking-tight text-gray-900"
           >
-            MindJournal
+            Multi tenancy app
           </Link>
   
           {/* Navigation */}

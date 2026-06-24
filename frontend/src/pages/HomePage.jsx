@@ -7,8 +7,8 @@ const HomePage = () => {
 
   const {userInfo} = useSelector((state)=>state.auth)
 
-  return (userInfo ? (<LoggedInUserDisplay />) : (<Hero />)
-    
+  return (
+    userInfo ? (<LoggedInUserDisplay />) : (<Hero />)
   )
 }
 

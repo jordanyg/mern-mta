@@ -5,10 +5,7 @@ import { useGetOrgsQuery } from "../slices/organizationApiSlice";
 
 const LoggedInUserDisplay = () => {
   const {
-    data: organizations = [],
-    isLoading,
-    error,
-  } = useGetOrgsQuery();
+    data: organizations = [],} = useGetOrgsQuery();
 
   return (
     <section className="relative min-h-screen overflow-hidden bg-[#f8f6f2] px-6 py-10">
@@ -54,58 +51,35 @@ const LoggedInUserDisplay = () => {
           </Link>
         </div>
 
-        {/* Loading */}
-        {isLoading && (
-          <div className="rounded-3xl bg-white/80 p-6 text-center shadow-xl backdrop-blur-xl">
-            Loading organizations...
-          </div>
-        )}
-
-        {/* Error */}
-        {error && (
-          <div className="rounded-3xl bg-white/80 p-6 text-center text-red-500 shadow-xl backdrop-blur-xl">
-            Failed to load organizations
-          </div>
-        )}
+        
 
         {/* Empty State */}
-        {!isLoading && organizations.length === 0 && (
-          <div className="rounded-3xl bg-white/80 p-10 text-center shadow-xl backdrop-blur-xl">
-            <h3 className="text-xl font-semibold text-gray-900">
-              No organizations yet
-            </h3>
-
-            <p className="mt-2 text-gray-500">
-              Create one or join an existing organization.
-            </p>
-          </div>
-        )}
+        
 
         {/* Organizations */}
-        <div className="grid gap-5">
-          {organizations.map((org) => (
-            <Link
-              key={org._id}
-              to={`/organization/${org._id}`}
-              className="group rounded-3xl border border-white/50 bg-white/80 p-6 shadow-xl backdrop-blur-xl transition hover:-translate-y-1"
-            >
-              <div className="flex items-center justify-between">
-                
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-900">
-                    {org.name}
-                  </h3>
+                    <div className="grid gap-4">
+            {organizations?.map((org) => (
+                <Link
+                key={org.organization._id}
+                to={`/organizations/${org.organization._id}`}
+                className="group block rounded-lg border border-gray-200 p-6 transition hover:border-gray-300 hover:shadow-md"
+                >
+                <div className="flex items-center justify-between">
+                    <div>
+                    <h3 className="text-xl font-semibold text-gray-900">
+                        {org.organization.name}
+                    </h3>
 
-                  <p className="mt-2 text-gray-500">
-                    {org.members?.length || 0} members
-                  </p>
+                    <p className="mt-2 text-gray-500">
+                        Role: {org.membership}
+                    </p>
+                    </div>
+
+                    <ArrowRight className="text-gray-400 transition group-hover:translate-x-1" />
                 </div>
-
-                <ArrowRight className="text-gray-400 transition group-hover:translate-x-1" />
-              </div>
-            </Link>
-          ))}
-        </div>
+                </Link>
+            ))}
+            </div>
 
       </div>
     </section>
