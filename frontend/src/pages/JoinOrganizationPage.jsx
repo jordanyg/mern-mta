@@ -3,25 +3,25 @@ import { Building2, Lock, Plus } from "lucide-react";
 import { useCreateOrgMutation } from "../slices/organizationApiSlice";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { useJoinOrgMutation } from "../slices/organizationApiSlice";
 
-const CreateOrganizationPage = () => {
-  const [name, setName] = useState("");
+const JoinOrganizationPage = () => {
   const [secret, setSecret] = useState("");
+  const [name ,setName] = useState("")
 
   const navigate = useNavigate();
 
-  const [createOrg, { isLoading }] = useCreateOrgMutation();
+  const [joinOrg, { isLoading }] = useJoinOrgMutation();
 
   const submitHandler = async (e) => {
     e.preventDefault();
 
     try {
-      await createOrg({
-        name,
+      await joinOrg({name,
         secret,
       }).unwrap();
 
-      toast.success("Organization created successfully");
+      toast.success("joined Organization successfully");
 
       navigate("/");
     } catch (err) {
@@ -41,15 +41,15 @@ const CreateOrganizationPage = () => {
         {/* Header */}
         <div className="mb-8 text-center">
           <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-[#f8f6f2] px-4 py-2 text-sm font-medium text-gray-600">
-            🏢 New Organization
+            join Organization
           </div>
 
           <h1 className="text-3xl font-bold text-gray-900">
-            Create Organization
+            join Organization
           </h1>
 
           <p className="mt-3 text-sm text-gray-500">
-            Create a new organization and invite members using your secret code.
+            join an new organization 
           </p>
         </div>
 
@@ -57,25 +57,25 @@ const CreateOrganizationPage = () => {
         <form onSubmit={submitHandler} className="space-y-5">
 
           {/* Name */}
-          <div>
-            <label className="mb-2 block text-sm font-medium text-gray-700">
-              Organization Name
-            </label>
-
-            <div className="flex items-center rounded-2xl border border-gray-200 bg-white px-4">
-              <Building2 className="h-5 w-5 text-gray-400" />
-
-              <input
-                type="text"
-                placeholder="Engineering Team"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="w-full bg-transparent px-3 py-4 text-gray-700 outline-none"
-                required
-              />
-            </div>
-          </div>
-
+          
+            <div>
+                        <label className="mb-2 block text-sm font-medium text-gray-700">
+                          Organization Name
+                        </label>
+            
+                        <div className="flex items-center rounded-2xl border border-gray-200 bg-white px-4">
+                          <Building2 className="h-5 w-5 text-gray-400" />
+            
+                          <input
+                            type="text"
+                            placeholder="Engineering Team"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            className="w-full bg-transparent px-3 py-4 text-gray-700 outline-none"
+                            required
+                          />
+                        </div>
+                      </div>
           {/* Secret */}
           <div>
             <label className="mb-2 block text-sm font-medium text-gray-700">
@@ -108,7 +108,7 @@ const CreateOrganizationPage = () => {
           >
             <Plus size={18} />
 
-            {isLoading ? "Creating..." : "Create Organization"}
+            {isLoading ? "joining..." : "join Organization"}
           </button>
         </form>
       </div>
@@ -116,4 +116,4 @@ const CreateOrganizationPage = () => {
   );
 };
 
-export default CreateOrganizationPage;
+export default JoinOrganizationPage;

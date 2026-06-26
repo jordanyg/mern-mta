@@ -26,7 +26,7 @@ const organizationApiSlice = apiSlice.injectEndpoints({
             })
         }),
         getOrgMembers : builder.query({
-            query:({orgId})=>({
+            query:(orgId)=>({
                 url : `${ORGANIZATION_URL}/${orgId}/members`,
                 method : 'GET'
             })
