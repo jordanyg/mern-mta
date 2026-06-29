@@ -68,12 +68,7 @@ const Header = () => {
     {/* Dropdown */}
     <div className="invisible absolute right-0 mt-3 w-52 translate-y-2 rounded-3xl border border-gray-100 bg-white/95 p-2 opacity-0 shadow-2xl backdrop-blur-xl transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
   
-      <Link
-        to="/profile"
-        className="flex items-center rounded-2xl px-4 py-3 text-sm font-medium text-gray-700 transition hover:bg-[#f8f6f2]"
-      >
-        Profile
-      </Link>
+      
   
       <button
         onClick={logoutHandler}
