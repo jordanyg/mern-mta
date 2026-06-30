@@ -79,7 +79,7 @@ const JoinOrganizationPage = () => {
           {/* Secret */}
           <div>
             <label className="mb-2 block text-sm font-medium text-gray-700">
-              Organization Secret
+              Organization Secrett
             </label>
 
             <div className="flex items-center rounded-2xl border border-gray-200 bg-white px-4">
